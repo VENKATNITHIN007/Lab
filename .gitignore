@@ -4,3 +4,6 @@ build/
 .env
 .DS_Store
 coverage/
+examples/
+02.examples/
+
