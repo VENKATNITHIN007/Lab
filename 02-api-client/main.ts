@@ -63,7 +63,7 @@ export class ApiClient {
             `API request failed with status : ${response.status}`,
           );
         }
-        const data = await response.json();
+        const data:T = await response.json();
 
         return data;
       } catch (error: any) {
@@ -79,6 +79,9 @@ export class ApiClient {
         await new Promise((resolve) => setTimeout(resolve, waitTime));
       }
     }
+
+    // Fallback: If we somehow escape the loop, TypeScript needs to know we don't return undefined.
+    throw new Error("Request failed completely and exceeded all retries.");
   }
 
   /**
